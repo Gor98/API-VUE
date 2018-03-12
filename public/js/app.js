@@ -47203,6 +47203,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47262,6 +47271,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     return console.log(err);
                 });
             }
+        },
+        addArticle: function addArticle() {
+            var _this3 = this;
+
+            if (this.edit === false) {
+                // Add
+                fetch('/api/article', {
+                    method: 'post',
+                    body: JSON.stringify(this.article),
+                    headers: {
+                        'content-type': 'aplixation/json'
+                    }
+                }).then(function (res) {
+                    return res.json();
+                }).then(function (data) {
+                    _this3.articles.title = '', _this3.articles.body = '', alert('Article added');
+                    _this3.fetchArticles();
+                }).then(function (err) {
+                    return console.log(err);
+                });
+            } else {
+                // update
+            }
+
+            fetch('/api/article');
         }
     }
 
@@ -47278,7 +47312,78 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h2", [_vm._v("Articles")]),
+      _c("h2", [_vm._v("qqqqqArticles")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "md-3",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.addArticle($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.article.title,
+                  expression: "article.title"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "text" },
+              domProps: { value: _vm.article.title },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.article, "title", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.article.body,
+                  expression: "article.body"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "body" },
+              domProps: { value: _vm.article.body },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.article, "body", $event.target.value)
+                }
+              }
+            })
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-block btn-success mb-1",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Save")]
+          )
+        ]
+      ),
       _vm._v(" "),
       _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
         _c("ul", { staticClass: "pagination" }, [

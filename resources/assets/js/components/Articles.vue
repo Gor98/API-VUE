@@ -1,6 +1,15 @@
 <template>
     <div>
         <h2>Articles</h2>
+        <form @submit.prevent="addArticle" class="md-3">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="text" v-model="article.title">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="body" v-model="article.body">
+            </div>
+            <button class="btn btn-block btn-success mb-1" type="submit">Save</button>
+        </form>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
                 <li v-bind:class="[{ disabled: !pagination.prev}]">
@@ -57,6 +66,7 @@
                         })
                     .catch(err => console.log(err));
             },
+
             makePagination(meta, links){
                 let pagination = {
                     current_page: meta.current_page,
@@ -79,6 +89,31 @@
                         })
                         .catch(err => console.log(err))
                 }
+            },
+
+            addArticle(){
+                if(this.edit === false){
+                // Add
+                    fetch('/api/article', {
+                        method: 'post',
+                        body: JSON.stringify(this.article),
+                        headers: {
+                            'content-type':'aplixation/json'
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data =>{
+                            this.articles.title = '',
+                            this.articles.body = '',
+                                alert('Article added') ;
+                            this.fetchArticles();
+                        })
+                        .then(err => console.log(err));
+                }else {
+                 // update
+                }
+
+                fetch('/api/article')
             }
 
         }
