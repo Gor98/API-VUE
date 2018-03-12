@@ -47408,21 +47408,25 @@ var render = function() {
       _vm._v(" "),
       _c("nav", { attrs: { "aria-label": "Page navigation example" } }, [
         _c("ul", { staticClass: "pagination" }, [
-          _c("li", { class: [{ disabled: !_vm.pagination.prev }] }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link ",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    _vm.fetchArticles(_vm.pagination.prev)
+          _c(
+            "li",
+            { class: ["page-item ", { disabled: !_vm.pagination.prev }] },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link ",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchArticles(_vm.pagination.prev)
+                    }
                   }
-                }
-              },
-              [_vm._v("Previous")]
-            )
-          ]),
+                },
+                [_vm._v("Previous")]
+              )
+            ]
+          ),
           _vm._v(" "),
           _c("li", { staticClass: "page-item disabled" }, [
             _c("a", { staticClass: "page-link", attrs: { href: "#" } }, [
@@ -47434,21 +47438,25 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("li", { class: [{ disabled: !_vm.pagination.next }] }, [
-            _c(
-              "a",
-              {
-                staticClass: "page-link ",
-                attrs: { href: "#" },
-                on: {
-                  click: function($event) {
-                    _vm.fetchArticles(_vm.pagination.next)
+          _c(
+            "li",
+            { class: ["page-item ", { disabled: !_vm.pagination.next }] },
+            [
+              _c(
+                "a",
+                {
+                  staticClass: "page-link ",
+                  attrs: { href: "#" },
+                  on: {
+                    click: function($event) {
+                      _vm.fetchArticles(_vm.pagination.next)
+                    }
                   }
-                }
-              },
-              [_vm._v("next")]
-            )
-          ])
+                },
+                [_vm._v("next")]
+              )
+            ]
+          )
         ])
       ]),
       _vm._v(" "),

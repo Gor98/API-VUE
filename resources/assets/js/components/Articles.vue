@@ -12,13 +12,13 @@
         </form>
         <nav aria-label="Page navigation example">
             <ul class="pagination">
-                <li v-bind:class="[{ disabled: !pagination.prev}]">
+                <li v-bind:class="['page-item ',{disabled: !pagination.prev}]">
                     <a class="page-link " @click="fetchArticles(pagination.prev)" href="#">Previous</a>
                 </li>
                 <li class="page-item disabled">
                     <a class="page-link" href="#">{{pagination.current_page}} of {{pagination.last_page}}</a>
                 </li>
-                <li v-bind:class="[{disabled: !pagination.next}]">
+                <li v-bind:class="['page-item ',{disabled: !pagination.next}]">
                     <a class="page-link " @click="fetchArticles(pagination.next)" href="#">next</a>
                 </li>
             </ul>
