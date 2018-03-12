@@ -47293,9 +47293,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 });
             } else {
                 // update
+                fetch('/api/article', {
+                    method: 'put',
+                    body: JSON.stringify(this.article),
+                    headers: {
+                        'content-type': 'aplixation/json'
+                    }
+                }).then(function (res) {
+                    return res.json();
+                }).then(function (data) {
+                    _this3.articles.title = '', _this3.articles.body = '', alert('Article updated');
+                    _this3.fetchArticles();
+                }).then(function (err) {
+                    return console.log(err);
+                });
             }
 
             fetch('/api/article');
+        },
+        editArticle: function editArticle(article) {
+            this.edit = true;
+            this.article.id = article.id;
+            this.article.article_id = article.id;
+            this.article.title = article.title;
+            this.article.body = article.body;
         }
     }
 
@@ -47312,7 +47333,7 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("h2", [_vm._v("qqqqqArticles")]),
+      _c("h2", [_vm._v("Articles")]),
       _vm._v(" "),
       _c(
         "form",
@@ -47461,7 +47482,7 @@ var render = function() {
                 staticClass: "btn btn-warning",
                 on: {
                   click: function($event) {
-                    _vm.editArticle(article.id)
+                    _vm.editArticle(article)
                   }
                 }
               },

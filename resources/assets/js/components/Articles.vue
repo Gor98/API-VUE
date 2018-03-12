@@ -28,7 +28,7 @@
             <p>{{article.body}}</p>
             <hr>
             <button class="btn btn-danger mb-2" @click="deleteArticle(article.id)">DELETE</button>
-            <button class="btn btn-warning" @click="editArticle(article.id)">EDIT</button>
+            <button class="btn btn-warning" @click="editArticle(article)">EDIT</button>
         </div>
     </div>
 </template>
@@ -111,9 +111,32 @@
                         .then(err => console.log(err));
                 }else {
                  // update
+                    fetch('/api/article', {
+                        method: 'put',
+                        body: JSON.stringify(this.article),
+                        headers: {
+                            'content-type':'aplixation/json'
+                        }
+                    })
+                        .then(res => res.json())
+                        .then(data =>{
+                            this.articles.title = '',
+                                this.articles.body = '',
+                                alert('Article updated') ;
+                            this.fetchArticles();
+                        })
+                        .then(err => console.log(err));
                 }
 
                 fetch('/api/article')
+            },
+
+            editArticle(article){
+                this.edit = true;
+                this.article.id = article.id;
+                this.article.article_id = article.id;
+                this.article.title = article.title;
+                this.article.body = article.body;
             }
 
         }
