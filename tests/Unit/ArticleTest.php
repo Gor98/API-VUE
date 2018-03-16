@@ -47,12 +47,13 @@ class ArticleTest extends TestCase
 
        $this->json('GET','api/article/'.$user_id)
             ->assertStatus(200)
-            ->assertJsonStructure(['data'=>
-                [
-                    'id',
-                    'title',
-                    'body'
-                ]
+            ->assertJsonStructure([
+                'data'=>
+                        [
+                            'id',
+                            'title',
+                            'body'
+                        ]
             ]);
 
     }
